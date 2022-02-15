@@ -25,6 +25,31 @@ const Home = () => {
         }
     }
 
+    
+
+    const handleCheckGetTask = (id) => {
+        // const myCheck = document.getElementById(id);
+        // const status = document.getElementById('status');
+        // const title = document.getElementById('title');
+
+        // if (myCheck.checked == true) {
+        //     console.log(data[0].id);
+        // } 
+
+        const newTodo = data.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, done: !todo.done}
+            } else {
+                return todo;
+            }
+        })
+
+        setData(newTodo);
+        console.log(newTodo);
+    }
+
+    // console.log(data);
+
     return (
         <div>
             <Container>
@@ -34,11 +59,13 @@ const Home = () => {
                 <table className="table table-hover">
                     <thead>
                         <tr className="" >
+                            <th scope="col">No.</th>
                             <th scope="col">Done</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Due</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -49,11 +76,17 @@ const Home = () => {
                                 return (
                                     <tr key={task.id}>
                                         <td>{index + 1}</td>
-                                        
-                                        <td>{task.title}</td>
+                                        <th scope="row">
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" value="" id={task.id} onChange={() => handleCheckGetTask(task.id)}/>
+                                            </div>
+                                        </th>
+                                        <td style={task.done?{color: '#898989', textDecoration: 'line-through'}:{color: 'red'}} id='title'>{task.title}</td>
                                         <td>{task.date}</td>
                                         <td>{task.duration}</td>
                                         <td>{task.type}</td>
+                                        <td id="status">{ task.done?"Completed":"Due" }</td>
+
                                         <td>
                                             <Link to={`/update/${task.id}`}>
                                                 <Button className="btn btn-warning">Update</Button>
