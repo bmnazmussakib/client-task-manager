@@ -3,6 +3,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './Component/Home/Home';
+import AddEditTask from './Component/AddEditTask/AddEditTask';
+import UpdateTask from './Component/UpdtaeTask/UpdateTask';
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/addTask" element={<AddEditTask/>} />
+        <Route path="/update/:id" element={<AddEditTask/>} />
       </Routes>
     </BrowserRouter>
   );

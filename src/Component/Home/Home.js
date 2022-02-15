@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -16,9 +17,20 @@ const Home = () => {
     }, [])
 
 
+    const handleDelete = (id) => {
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            axios.delete(`http://localhost:8080/delete/${id}`);
+            toast.success("Task Deleted successfully");
+            setTimeout(() => loadData(), 500);
+        }
+    }
+
     return (
         <div>
             <Container>
+                <Link to="/addTask">
+                    <button className="btn btn-info text-white">Add New Task</button>
+                </Link>
                 <table className="table table-hover">
                     <thead>
                         <tr className="" >
@@ -46,7 +58,7 @@ const Home = () => {
                                                 <Button className="btn btn-warning">Update</Button>
                                             </Link>
 
-                                            <Button className="btn btn-danger">Delete</Button>
+                                            <Button className="btn btn-danger" onClick={() => handleDelete(task.id)}>Delete</Button>
                                         </td>
                                     </tr>
                                 )
