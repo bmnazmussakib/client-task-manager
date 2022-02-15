@@ -6,11 +6,11 @@ Data can be filtering by date.
 
 # Technology Used:
 
-React JS
-React Bootstrap
-React Router Dom
-Axios
-Toaster
-HTML
-CSS
+React JS,
+React Bootstrap,
+React Router Dom,
+Axios,
+Toaster,
+HTML,
+CSS,
 Javascript
