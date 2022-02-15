@@ -8,7 +8,7 @@ const Home = () => {
     const [data, setData] = useState([]);
 
     const loadData = async () => {
-        const response = await axios.get('http://localhost:8080/allTask');
+        const response = await axios.get('http://localhost:8080/api/get');
         setData(response.data);
     }
 
@@ -19,7 +19,7 @@ const Home = () => {
 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this task?')) {
-            axios.delete(`http://localhost:8080/delete/${id}`);
+            axios.delete(`http://localhost:8080/api/remove/${id}`);
             toast.success("Task Deleted successfully");
             setTimeout(() => loadData(), 500);
         }
@@ -49,6 +49,7 @@ const Home = () => {
                                 return (
                                     <tr key={task.id}>
                                         <td>{index + 1}</td>
+                                        
                                         <td>{task.title}</td>
                                         <td>{task.date}</td>
                                         <td>{task.duration}</td>
