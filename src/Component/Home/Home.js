@@ -17,7 +17,7 @@ const Home = () => {
     const [data, setData] = useState([]);
 
     const loadData = async (date = 'empty') => {
-        const response = await axios.get(`http://localhost:8080/api/get/${date}`);
+        const response = await axios.get(`http://localhost:8080/api/get-home/${date}`);
         setData(response.data);
 
     }
